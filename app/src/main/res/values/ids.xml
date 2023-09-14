@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="listview" type="id" />
+    <item name="textview" type="id" />
+</resources>

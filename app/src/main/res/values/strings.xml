@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name" translatable="false">GameLauncher</string>
+    <string name="gamelauncher" translatable="false">GameLauncher</string>
+</resources>
