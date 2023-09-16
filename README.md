@@ -1,5 +1,5 @@
 <h1 align="center">Welcome to GameLauncher 👋</h1>
-<p>
+<p align="center">
   <a href="https://github.com/0xFOSSMan/GameLauncher/blob/main/LICENSE" target="_blank">
     <img alt="License: GPL--3.0" src="https://img.shields.io/badge/License-GPL--3.0-yellow.svg" />
   </a>
