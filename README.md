@@ -7,8 +7,6 @@
 
 > GameLauncher is an open-source replacement for proprietary game-launchers from samsung and other manufacturers. It works without a network connection and collects absolutely no data about you. Simply launch the app and all your apps will be there. Still WIP!
 
-### 🏠 [Homepage](https://github.com/0xFOSSMan/GameLauncher)
-
 ## Author
 
 👤 **0xFOSSMan**
