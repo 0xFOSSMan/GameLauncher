@@ -27,7 +27,7 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2023 [0xFOSSMan](https://github.com/0xFOSSMan).<br />
-This project is [GPL--3.0](https://github.com/0xFOSSMan/GameLauncher/blob/main/LICENSE) licensed.
+This project is [GPL-3.0](https://github.com/0xFOSSMan/GameLauncher/blob/main/LICENSE) licensed.
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
