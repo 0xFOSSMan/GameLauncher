@@ -3,5 +3,8 @@
 - [x] List all apps
 - [X] Filter Games out of the list
 - [X] Fixed the double entry bug
-- [ ] Add App Icon to list
-- [ ] Make a nice design
+- [X] Add App Icon to list
+- [X] Make a nice design
+- [ ] Add bottom bar for settings menu
+- [ ] Settings Menu
+- [ ] Move everything out of MainActivity.kt
