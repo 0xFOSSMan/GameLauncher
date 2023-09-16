@@ -3,6 +3,14 @@
   <a href="https://github.com/0xFOSSMan/GameLauncher/blob/main/LICENSE" target="_blank">
     <img alt="License: GPL--3.0" src="https://img.shields.io/badge/License-GPL--3.0-yellow.svg" />
   </a>
+  <a href="https://github.com/0xFOSSMan/GameLauncher/issues" target="_blank">
+    <img alt="Issues" src="https://img.shields.io/github/issues-raw/0xFOSSMan/GameLauncher" />
+  </a>
+  <a href="https://github.com/0xFOSSMan/GameLauncher/releases" target="_blank">
+    <img alt="Downloads" src="https://img.shields.io/github/downloads/0xFOSSMan/GameLauncher/total" />
+  </a>
+  <img alt="Version" src="https://img.shields.io/github/v/release/0xFOSSMan/GameLauncher" />
+  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/0xFOSSMan/GameLauncher/main" />
 </p>
 
 > GameLauncher is an open-source replacement for proprietary game-launchers from samsung and other manufacturers. It works without a network connection and collects absolutely no data about you. Simply launch the app and all your apps will be there. Still WIP!
