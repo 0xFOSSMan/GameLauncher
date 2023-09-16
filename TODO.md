@@ -8,3 +8,4 @@
 - [ ] Add bottom bar for settings menu
 - [ ] Settings Menu
 - [ ] Move everything out of MainActivity.kt
+- [ ] If user has more than 5 games: make LazyGrid instead of LazyList
