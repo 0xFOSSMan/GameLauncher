@@ -11,15 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomAppBar() {
     Scaffold(
         bottomBar = {
-            BottomAppBar(
-
-            )
+            BottomAppBar()
         },
     ) { innerPadding ->
         IconButton(onClick = { /*TODO*/ }) {
@@ -27,7 +24,7 @@ fun BottomAppBar() {
         }
         Text(
             modifier = Modifier.padding(innerPadding),
-            text = "Bottom Bar"
+            text = "Bottom Bar",
         )
     }
 }

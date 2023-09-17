@@ -40,19 +40,19 @@ import androidx.core.graphics.drawable.toBitmap
 @Suppress("DEPRECATION")
 @Composable
 fun GameLauncherView(context: Context) {
-    Box (
+    Box(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.background)
-            .fillMaxSize()
-    ){
+            .fillMaxSize(),
+    ) {
         Column(
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
                 text = "GameLauncher",
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally),
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.primary,
             )
             val packageManager = LocalContext.current.packageManager
             val pm: PackageManager = packageManager
@@ -64,7 +64,6 @@ fun GameLauncherView(context: Context) {
             val tag = "GameLauncher"
 
             i.addCategory(Intent.CATEGORY_LAUNCHER)
-
 
             for (ri in allApps) {
                 val app = ApplicationInfo()
@@ -78,7 +77,7 @@ fun GameLauncherView(context: Context) {
                         Log.v(
                             tag,
                             "Added App: ".plus(app.packageName).plus(" ")
-                                .plus(pm.getLaunchIntentForPackage(app.packageName))
+                                .plus(pm.getLaunchIntentForPackage(app.packageName)),
                         )
                     }
                     gamePackageList.add(app.packageName)
@@ -90,31 +89,33 @@ fun GameLauncherView(context: Context) {
             Toast.makeText(
                 LocalContext.current,
                 sb.toString(),
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_SHORT,
             ).show()
             if (appsList.size < 5) {
                 LazyColumn(
                     modifier = Modifier
                         .wrapContentWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                    verticalArrangement = Arrangement.Center,
                 ) {
                     items(appsList) { app ->
                         Image(
-                            (Bitmap.createBitmap(
-                                pm.getActivityIcon(
-                                    pm.getLaunchIntentForPackage(
-                                        app.packageName
-                                    )!!
-                                ).toBitmap()
-                            )).asImageBitmap(),
-                            app.packageName
+                            (
+                                Bitmap.createBitmap(
+                                    pm.getActivityIcon(
+                                        pm.getLaunchIntentForPackage(
+                                            app.packageName,
+                                        )!!,
+                                    ).toBitmap(),
+                                )
+                                ).asImageBitmap(),
+                            app.packageName,
                         )
                         ClickableText(
                             AnnotatedString(
                                 app.name,
                                 spanStyle = SpanStyle(color = MaterialTheme.colorScheme.primary),
-                                paragraphStyle = ParagraphStyle(TextAlign.Center)
+                                paragraphStyle = ParagraphStyle(TextAlign.Center),
                             ),
                             modifier = Modifier
                                 .padding(15.dp)
@@ -124,7 +125,7 @@ fun GameLauncherView(context: Context) {
                                 val launchIntent: Intent? =
                                     pm.getLaunchIntentForPackage(app.packageName)
                                 launchIntent(context, launchIntent!!)
-                            }
+                            },
                         )
                         Divider()
                     }
@@ -139,26 +140,28 @@ fun GameLauncherView(context: Context) {
                         items(appsList.size) { app ->
                             Card(
                                 modifier = Modifier
-                                    .padding(10.dp)
+                                    .padding(10.dp),
                             ) {
                                 Image(
-                                    (Bitmap.createBitmap(
-                                        pm.getActivityIcon(
-                                            pm.getLaunchIntentForPackage(
-                                                appsList[app].packageName
-                                            )!!
-                                        ).toBitmap()
-                                    )).asImageBitmap(),
+                                    (
+                                        Bitmap.createBitmap(
+                                            pm.getActivityIcon(
+                                                pm.getLaunchIntentForPackage(
+                                                    appsList[app].packageName,
+                                                )!!,
+                                            ).toBitmap(),
+                                        )
+                                        ).asImageBitmap(),
                                     appsList[app].packageName,
                                     modifier = Modifier
                                         .align(Alignment.CenterHorizontally)
-                                        .padding(0.dp, 15.dp, 0.dp, 0.dp)
+                                        .padding(0.dp, 15.dp, 0.dp, 0.dp),
                                 )
                                 ClickableText(
                                     AnnotatedString(
                                         appsList[app].name,
                                         spanStyle = SpanStyle(color = MaterialTheme.colorScheme.primary),
-                                        paragraphStyle = ParagraphStyle(TextAlign.Center)
+                                        paragraphStyle = ParagraphStyle(TextAlign.Center),
                                     ),
                                     modifier = Modifier
                                         .padding(0.dp, 0.dp, 0.dp, 20.dp)
@@ -168,13 +171,14 @@ fun GameLauncherView(context: Context) {
                                         val launchIntent: Intent? =
                                             pm.getLaunchIntentForPackage(appsList[app].packageName)
                                         launchIntent(context, launchIntent!!)
-                                    }
+                                    },
                                 )
                             }
                         }
-                    })
+                    },
+                )
             }
-            //BottomAppBar()
+            // BottomAppBar()
         }
     }
 }
