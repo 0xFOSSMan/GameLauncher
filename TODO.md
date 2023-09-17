@@ -7,7 +7,7 @@
 - [X] Make a nice design
 - [ ] Add bottom bar for settings menu
 - [ ] Settings Menu
-- [X] Move everything out of MainActivity.kt
-- [X] If user has more than 5 games: make LazyGrid instead of LazyList
+- [ ] Move everything out of MainActivity.kt
+- [ ] If user has more than 5 games: make LazyGrid instead of LazyList
 - [ ] Add search bar in bottom bar to find apps quickly
 - [ ] Add favourites
