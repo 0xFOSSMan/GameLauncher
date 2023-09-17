@@ -96,7 +96,7 @@ fun GameLauncherView(context: Context) {
                         Card(
                             modifier = Modifier.padding(10.dp),
                         ) {
-                            //creating the bitmap and resizing it
+                            // creating the bitmap and resizing it
                             val b: Bitmap = Bitmap.createBitmap(pm.getActivityIcon(pm.getLaunchIntentForPackage(appsList[app].packageName)!!).toBitmap())
                             val rb: Bitmap = Bitmap.createScaledBitmap(b, 128, 128, false)
                             Image(
