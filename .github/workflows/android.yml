@@ -1,16 +1,18 @@
-name: Android CI
-
+name: Android CW
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
 jobs:
-  build:
-
+  linting:
     runs-on: ubuntu-latest
-
+    steps:
+      - name: linting
+        run: ./gradlew lintKotlin
+  build:
+    needs: [linting]
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: set up JDK 17
@@ -19,8 +21,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
-
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew build --stacktrace
