@@ -22,6 +22,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.*
@@ -103,41 +105,84 @@ class MainActivity : ComponentActivity() {
                             sb.toString(),
                             Toast.LENGTH_SHORT
                         ).show()
-                        LazyColumn (
-                            modifier = Modifier
-                                .wrapContentWidth(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
-                        ){
-                            items(appsList) { app ->
-                                Image(
-                                    (Bitmap.createBitmap(
-                                        pm.getActivityIcon(
-                                            pm.getLaunchIntentForPackage(
-                                                app.packageName
-                                            )!!
-                                        ).toBitmap()
-                                    )).asImageBitmap(),
-                                    app.packageName
-                                )
-                                ClickableText(
-                                    AnnotatedString(
-                                        app.name,
-                                        spanStyle = SpanStyle(color = MaterialTheme.colorScheme.primary),
-                                        paragraphStyle = ParagraphStyle(TextAlign.Center)
-                                    ),
-                                    modifier = Modifier
-                                        .padding(15.dp)
-                                        .align(Alignment.CenterHorizontally)
-                                        .fillMaxWidth(),
-                                    onClick = {
-                                        val launchIntent: Intent? =
-                                            pm.getLaunchIntentForPackage(app.packageName)
-                                        startActivity(launchIntent)
-                                    }
-                                )
-                                Divider()
+                        if (appsList.size < 5) {
+                            LazyColumn(
+                                modifier = Modifier
+                                    .wrapContentWidth(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ) {
+                                items(appsList) { app ->
+                                    Image(
+                                        (Bitmap.createBitmap(
+                                            pm.getActivityIcon(
+                                                pm.getLaunchIntentForPackage(
+                                                    app.packageName
+                                                )!!
+                                            ).toBitmap()
+                                        )).asImageBitmap(),
+                                        app.packageName
+                                    )
+                                    ClickableText(
+                                        AnnotatedString(
+                                            app.name,
+                                            spanStyle = SpanStyle(color = MaterialTheme.colorScheme.primary),
+                                            paragraphStyle = ParagraphStyle(TextAlign.Center)
+                                        ),
+                                        modifier = Modifier
+                                            .padding(15.dp)
+                                            .align(Alignment.CenterHorizontally)
+                                            .fillMaxWidth(),
+                                        onClick = {
+                                            val launchIntent: Intent? =
+                                                pm.getLaunchIntentForPackage(app.packageName)
+                                            startActivity(launchIntent)
+                                        }
+                                    )
+                                    Divider()
+                                }
                             }
+                        } else {
+                            LazyVerticalGrid(
+                                columns = GridCells.Fixed(3),
+                                verticalArrangement = Arrangement.SpaceAround,
+                                modifier = Modifier
+                                    .padding(15.dp),
+                                content = {
+                                items(appsList.size) { app ->
+                                    Card(
+                                        modifier = Modifier
+                                            .padding(15.dp)
+                                    ) {
+                                        Image(
+                                            (Bitmap.createBitmap(
+                                                pm.getActivityIcon(
+                                                    pm.getLaunchIntentForPackage(
+                                                        appsList[app].packageName
+                                                    )!!
+                                                ).toBitmap()
+                                            )).asImageBitmap(),
+                                            appsList[app].packageName
+                                        )
+                                        ClickableText(
+                                            AnnotatedString(
+                                                appsList[app].name,
+                                                spanStyle = SpanStyle(color = MaterialTheme.colorScheme.primary),
+                                                paragraphStyle = ParagraphStyle(TextAlign.Center)
+                                            ),
+                                            modifier = Modifier
+                                                .padding(0.dp, 0.dp, 0.dp, 20.dp)
+                                                .align(Alignment.CenterHorizontally)
+                                                .fillMaxWidth(),
+                                            onClick = {
+                                                val launchIntent: Intent? =
+                                                    pm.getLaunchIntentForPackage(appsList[app].packageName)
+                                                startActivity(launchIntent)
+                                            }
+                                        )
+                                    }
+                                }
+                            })
                         }
                     }
                 }
