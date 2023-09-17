@@ -1,0 +1,28 @@
+name: Android CI
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup jdk
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          cache: gradle
+      - name: linting
+        run: ./gradlew lintKotlin
+      - name: Build Release APK
+        run: ./gradlew assembleDebug
+      - name: Release APK
+        uses: 0xfossman/GameLauncher@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          APP_FOLDER: app
