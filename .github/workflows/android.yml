@@ -8,12 +8,6 @@ jobs:
   linting:
     runs-on: ubuntu-latest
     steps:
-      - name: linting
-        run: ./gradlew lintKotlin
-  build:
-    needs: [linting]
-    runs-on: ubuntu-latest
-    steps:
     - uses: actions/checkout@v3
     - name: set up JDK 17
       uses: actions/setup-java@v3
@@ -21,6 +15,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
+    - name: linting
+      run: ./gradlew lintKotlin
+  build:
+    needs: [linting]
+    runs-on: ubuntu-latest
+    steps:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
