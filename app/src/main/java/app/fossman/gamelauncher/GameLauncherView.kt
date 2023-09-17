@@ -47,7 +47,8 @@ fun GameLauncherView(context: Context) {
             Text(
                 text = "GameLauncher",
                 modifier = Modifier
-                    .align(Alignment.CenterHorizontally),
+                    .align(Alignment.CenterHorizontally)
+                    .padding(0.dp,10.dp, 0.dp, 0.dp),
                 color = MaterialTheme.colorScheme.primary,
             )
             val packageManager = LocalContext.current.packageManager
