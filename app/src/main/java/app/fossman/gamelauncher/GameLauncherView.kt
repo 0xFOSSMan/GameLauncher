@@ -84,7 +84,7 @@ fun GameLauncherView(context: Context) {
             sb.append(appsList.size)
             sb.append(" apps loaded")
             Toast.makeText(
-                LocalContext.current,
+                context,
                 sb.toString(),
                 Toast.LENGTH_SHORT,
             ).show()
@@ -97,6 +97,17 @@ fun GameLauncherView(context: Context) {
                         Card(
                             modifier = Modifier.padding(10.dp),
                         ) {
+                            /*IconButton(
+                                modifier = Modifier
+                                    .align(Alignment.End)
+                                    .padding(0.dp, 0.dp, 0.dp, 0.dp),
+                                onClick = {
+                                /*TODO*/
+                                }
+                            ) {
+                                Image(imageVector = Icons.Outlined.FavoriteBorder, contentDescription = "Favorite")
+                            }
+                             */
                             // creating the bitmap and resizing it
                             val b: Bitmap = Bitmap.createBitmap(pm.getActivityIcon(pm.getLaunchIntentForPackage(appsList[app].packageName)!!).toBitmap())
                             val rb: Bitmap = Bitmap.createScaledBitmap(b, 128, 128, false)
@@ -105,7 +116,7 @@ fun GameLauncherView(context: Context) {
                                 appsList[app].packageName,
                                 modifier = Modifier
                                     .align(Alignment.CenterHorizontally)
-                                    .padding(0.dp, 15.dp, 0.dp, 0.dp),
+                                    .padding(0.dp, 0.dp, 0.dp, 0.dp),
                             )
                             ClickableText(
                                 AnnotatedString(
