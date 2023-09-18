@@ -37,4 +37,9 @@ jobs:
     needs: [build]
     steps:
     - name: send ntfy.sh alert
-      run: curl -d "build success" ntfy.sh/github-fossman
+      run: |
+        curl \
+          -H "Title: GameLauncher Build Status" \
+          -H "Content-Type: text/plain" \
+          -d $'Repo: ${{ github.repository }}\nCommit: ${{ github.sha }}\nRef: ${{ github.ref }}\nStatus: ${{ job.status}}'
+
