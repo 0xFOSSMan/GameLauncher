@@ -32,3 +32,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build --stacktrace
+  ntfy:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+    - name: send ntfy.sh alert
+      run: curl -d "build success" ntfy.sh/github-fossman
