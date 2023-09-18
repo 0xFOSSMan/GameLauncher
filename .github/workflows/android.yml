@@ -43,4 +43,4 @@ jobs:
     needs: [build]
     steps:
     - name: send ntfy.sh alert
-      run: curl -d "Repo; ${{ github.repository }}\nCommit; ${{ github.sha }}\nRef; ${{ github.ref }}\nStatus; ${{ job.status}}" ntfy.sh/github-fossman
+      run: curl -d "Repo; ${{ github.repository }}    Commit; ${{ github.sha }}    Ref; ${{ github.ref }}    Status; ${{ job.status }}" ${{ secrets.NTFY }}
