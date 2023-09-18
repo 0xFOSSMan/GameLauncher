@@ -37,9 +37,4 @@ jobs:
     needs: [build]
     steps:
     - name: send ntfy.sh alert
-      run: |
-        curl \
-          -H "Title: GameLauncher Build Status" \
-          -H "Content-Type: text/plain" \
-          -d $'Repo: ${{ github.repository }}\nCommit: ${{ github.sha }}\nRef: ${{ github.ref }}\nStatus: ${{ job.status}}'
-
+      run: curl -d 'Repo: ${{ github.repository }}\nCommit: ${{ github.sha }}\nRef: ${{ github.ref }}\nStatus: ${{ job.status}}'
