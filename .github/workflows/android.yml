@@ -57,4 +57,4 @@ jobs:
     needs: [build]
     steps:
     - name: send ntfy.sh alert
-      run: curl -d "Repo; ${{ github.repository }}    Commit; ${{ github.sha }}    Ref; ${{ github.ref }}    Status; ${{ job.status }}" http://${{ secrets.NTFY }}
+      run: curl -H "Title:\ GameLauncher" -d "Repo; ${{ github.repository }}    Commit; ${{ github.sha }}    Ref; ${{ github.ref }}    Status; ${{ job.status }}" http://${{ secrets.NTFY }}
