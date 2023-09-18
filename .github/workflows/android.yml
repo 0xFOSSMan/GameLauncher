@@ -38,6 +38,8 @@ jobs:
     steps:
       - name: Build nightly APK
         run: ./gradlew assembleDebug
+        env: 
+          APP_FOLDER: app
   ntfy:
     runs-on: ubuntu-latest
     needs: [build]
