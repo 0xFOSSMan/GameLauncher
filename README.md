@@ -8,8 +8,8 @@
   </a>
   <a href="https://github.com/0xFOSSMan/GameLauncher/releases" target="_blank">
     <img alt="Downloads" src="https://img.shields.io/github/downloads/0xFOSSMan/GameLauncher/total" />
+    <img alt="Version" src="https://img.shields.io/github/v/release/0xFOSSMan/GameLauncher" />
   </a>
-  <img alt="Version" src="https://img.shields.io/github/v/release/0xFOSSMan/GameLauncher" />
   <img alt="Last Commit" src="https://img.shields.io/github/last-commit/0xFOSSMan/GameLauncher/main" />
 </p>
 
