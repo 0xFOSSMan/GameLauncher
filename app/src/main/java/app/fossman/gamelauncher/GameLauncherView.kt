@@ -60,13 +60,15 @@ fun GameLauncherView(context: Context) {
             val allApps = pm.queryIntentActivities(i, 0)
             val tag = "GameLauncher"
 
+            gameListOverridePopulate()
+
             i.addCategory(Intent.CATEGORY_LAUNCHER)
 
             for (ri in allApps) {
                 val app = ApplicationInfo()
                 app.name = ri.loadLabel(pm).toString()
                 app.packageName = ri.activityInfo.packageName
-                if (packageIsGame(LocalContext.current, app.packageName)) {
+                if (packageIsGame(LocalContext.current, app.packageName) || gameListOverride.contains(app.packageName)) {
                     if (gamePackageList.contains(app.packageName)) {
                         Log.v(tag, "duplicate package ".plus(app.packageName))
                     } else {
@@ -78,6 +80,8 @@ fun GameLauncherView(context: Context) {
                         )
                     }
                     gamePackageList.add(app.packageName)
+                } else {
+                    Log.v(tag, "App not added: ".plus(app.packageName))
                 }
             }
 
@@ -116,7 +120,7 @@ fun GameLauncherView(context: Context) {
                                 appsList[app].packageName,
                                 modifier = Modifier
                                     .align(Alignment.CenterHorizontally)
-                                    .padding(0.dp, 0.dp, 0.dp, 0.dp),
+                                    .padding(0.dp, 10.dp, 0.dp, 0.dp),
                             )
                             ClickableText(
                                 AnnotatedString(
@@ -125,7 +129,7 @@ fun GameLauncherView(context: Context) {
                                     paragraphStyle = ParagraphStyle(TextAlign.Center),
                                 ),
                                 modifier = Modifier
-                                    .padding(0.dp, 0.dp, 0.dp, 20.dp)
+                                    .padding(0.dp, 0.dp, 0.dp, 10.dp)
                                     .align(Alignment.CenterHorizontally)
                                     .fillMaxWidth(),
                                 onClick = {
