@@ -5,10 +5,12 @@ import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,14 +19,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Card
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.ParagraphStyle
@@ -33,6 +38,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Suppress("DEPRECATION")
 @Composable
 fun GameLauncherView(context: Context) {
@@ -59,6 +65,8 @@ fun GameLauncherView(context: Context) {
             val i = Intent(Intent.ACTION_MAIN, null)
             val allApps = pm.queryIntentActivities(i, 0)
             val tag = "GameLauncher"
+            var isContextMenuVisible = false
+            // var pressOffset: DpOffset
 
             gameListOverridePopulate()
 
@@ -99,8 +107,37 @@ fun GameLauncherView(context: Context) {
                 content = {
                     items(appsList.size) { app ->
                         Card(
-                            modifier = Modifier.padding(10.dp),
+                            modifier = Modifier
+                                .padding(10.dp)
+                                .pointerInput(true) {
+                                    detectTapGestures(onLongPress = {
+                                        isContextMenuVisible = true
+                                        // pressOffset = DpOffset(it.x.toDp(), it.y.toDp())
+                                    })
+                                },
+                            onClick = {
+                                val launchIntent: Intent? =
+                                    pm.getLaunchIntentForPackage(appsList[app].packageName)
+                                launchIntent(context, launchIntent!!)
+                            },
                         ) {
+                            DropdownMenu(
+                                expanded = isContextMenuVisible,
+                                onDismissRequest = { isContextMenuVisible = false },
+                            ) {
+                                DropdownMenuItem(text = { "Add to favorite" }, onClick = {
+                                    Toast.makeText(
+                                        context,
+                                        "Feature not done yet",
+                                        Toast.LENGTH_SHORT,
+                                    ).show()
+                                })
+                                DropdownMenuItem(text = { "Uninstall" }, onClick = {
+                                    val uninstallIntent = Intent(Intent.ACTION_DELETE)
+                                    uninstallIntent.data = Uri.parse("package:" + appsList[app].packageName)
+                                    launchIntent(context, uninstallIntent)
+                                })
+                            }
                             /*IconButton(
                                 modifier = Modifier
                                     .align(Alignment.End)
@@ -122,21 +159,18 @@ fun GameLauncherView(context: Context) {
                                     .align(Alignment.CenterHorizontally)
                                     .padding(0.dp, 10.dp, 0.dp, 0.dp),
                             )
-                            ClickableText(
+                            Text(
                                 AnnotatedString(
                                     appsList[app].name,
-                                    spanStyle = SpanStyle(color = MaterialTheme.colorScheme.primary),
+                                    spanStyle = SpanStyle(
+                                        color = MaterialTheme.colorScheme.primary,
+                                    ),
                                     paragraphStyle = ParagraphStyle(TextAlign.Center),
                                 ),
                                 modifier = Modifier
                                     .padding(0.dp, 0.dp, 0.dp, 10.dp)
                                     .align(Alignment.CenterHorizontally)
                                     .fillMaxWidth(),
-                                onClick = {
-                                    val launchIntent: Intent? =
-                                        pm.getLaunchIntentForPackage(appsList[app].packageName)
-                                    launchIntent(context, launchIntent!!)
-                                },
                             )
                         }
                     }
