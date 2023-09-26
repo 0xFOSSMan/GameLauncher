@@ -1,3 +1,4 @@
+<img align="center" src"https://i.ibb.co/qrTRPJD/photo-2023-09-21-11-46-09.jpg" />
 <h1 align="center">Welcome to GameLauncher 👋</h1>
 <p align="center">
   <a href="https://github.com/0xFOSSMan/GameLauncher/blob/main/LICENSE" target="_blank">
