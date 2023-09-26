@@ -1,4 +1,4 @@
-<p align="center"><img width="250px" height="250px" src="https://i.ibb.co/qrTRPJD/photo-2023-09-21-11-46-09.jpg" alt="logo"/></p>
+<p align="center"><img style="border-radius: 15px" width="250px" height="250px" src="https://i.ibb.co/qrTRPJD/photo-2023-09-21-11-46-09.jpg" alt="logo"/></p>
 <h1 align="center">Welcome to GameLauncher 👋</h1>
 <p align="center">
   <a href="https://github.com/0xFOSSMan/GameLauncher/blob/main/LICENSE" target="_blank">
